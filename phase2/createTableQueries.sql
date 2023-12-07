@@ -1,0 +1,23 @@
+-- create table Citizen(
+-- 	First_Name Varchar(20),
+-- 	Last_Name Varchar(20),
+-- 	Birth_Date Date,
+-- 	Gender Char(1),
+-- 	National_Code Char(10) Primary Key,
+-- 	Check (Gender in ('F','M'))
+-- );
+-- Alter Table Citizen
+-- Add Column Overseer_Citizen_Id Char(10);
+-- ALTER TABLE Citizen
+-- ADD FOREIGN KEY (Overseer_Citizen_Id) REFERENCES Citizen(National_Code);
+-- Select * from Citizen;
+-- Insert Into Citizen Values('ali','hezaveh','2022-12-12','M','1234567890', '4421045209');
+-- Insert Into Citizen Values('alireza','farshi','2022-12-12','M','4421045209',NULL);
+
+-- create table Citizen_Account(
+-- 	Citizen_Id Char(10) Primary Key,
+-- 	Credit Int,
+-- 	Payment Int,
+-- 	Deposit Int,
+-- 	Foreign Key (Citizen_Id) References Citizen(National_Code)
+-- );

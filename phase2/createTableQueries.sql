@@ -62,8 +62,59 @@
 -- Alter table payment_receipt
 -- ADD FOREIGN KEY (Citizen_National_code) REFERENCES Citizen(National_Code);
 
+------------------------------------------------------------------------------------
+
+-- create table transport_network (
+-- 	Transpot_Network_Name Varchar(10) Primary key,
+-- 	Cost_per_Kilometer Int
+-- );
+
+-- create table car (
+-- 	Tag Char(8) Primary key,
+-- 	Car_Owner Char(10),
+-- 	Color Varchar(15),
+-- 	Chassis_Number Char(17),
+-- 	Brand Varchar(20),
+-- 	Transpot_Network_Name Varchar(10),
+-- 	Foreign Key (Transpot_Network_Name) References transport_network(Transpot_Network_Name),
+-- 	Foreign Key (Car_Owner) References Citizen(National_Code)
+-- );
+
+-- create table road (
+-- 	Road_Name varchar(20),
+-- 	Transpot_Network_Name Varchar(10),
+-- 	Road_Id varchar(20) Primary key,
+--  Foreign Key (Transpot_Network_Name) References transport_network(Transpot_Network_Name)
+-- );
+
+-- create table station (
+-- 	Station_Name varchar(20),
+-- 	Station_GPS varchar(20) Primary key
+-- );
+
+-- create table sequence_station (
+-- 	First_Station varchar(20),
+-- 	Second_Station varchar(20),
+-- 	Distance Int,
+-- 	Period_Of_Time Int,
+-- 	Foreign key (First_Station) References station (Station_GPS),
+-- 	Foreign key (Second_Station) References station (Station_GPS)
+-- );
+
+-- create table station_R_road (
+-- 	Road_Id varchar(20),
+-- 	Station_GPS varchar(20),
+-- 	Foreign key (Road_Id) References road (Road_Id),
+-- 	Foreign key (Station_GPS) References station (Station_GPS)
+-- );
 
 
-
-
-
+-- create table travel (
+-- 	Citizen_Id Char(10),
+-- 	Car_Tag Char(8),
+-- 	Origin varchar(20),
+-- 	Destination varchar(20),
+-- 	Travel_Date Date,
+-- 	Foreign key (Citizen_Id) References citizen (National_Code),
+-- 	Foreign key (Car_Tag) References car (Tag)	
+-- );

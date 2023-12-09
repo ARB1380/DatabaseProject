@@ -90,10 +90,11 @@
 
 -- create table station (
 -- 	Station_Name varchar(20) Primary key,
--- 	x_location  Int unique,
---    y_location Int unique
+-- 	x_location  Int,
+--     y_location Int,
+-- 	constraint uniq unique(x_location, y_location)
 -- );
-
+	
 -- create table sequence_station (
 -- 	First_Station varchar(20),
 -- 	Second_Station varchar(20),
@@ -147,3 +148,5 @@
 -- 	on update cascade
 -- 	on delete cascade;
 
+
+ 

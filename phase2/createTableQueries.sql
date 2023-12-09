@@ -121,7 +121,7 @@
 -- 	Origin varchar(20),
 -- 	Destination varchar(20),
 -- 	Travel_Date Date,
---  primary key (Citizen_Id , Car_Tag),
+--  primary key (Citizen_Id , Car_Tag, Travel_Date),
 -- 	Foreign key (Citizen_Id) References citizen (National_Code),
 -- 	Foreign key (Car_Tag) References car (Tag)	
 -- );

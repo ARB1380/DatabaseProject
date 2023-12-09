@@ -66,7 +66,8 @@
 
 -- create table transport_network (
 -- 	Transpot_Network_Name Varchar(10) Primary key,
--- 	Cost_per_Kilometer Int
+-- 	Cost_per_Kilometer Int,
+--  check (Cost_per_Kilometer > 0)
 -- );
 
 -- create table car (
@@ -80,16 +81,17 @@
 -- 	Foreign Key (Car_Owner) References Citizen(National_Code)
 -- );
 
--- create table road (
--- 	Road_Name varchar(20),
+-- create table path (
+-- 	Path_Name varchar(20),
 -- 	Transpot_Network_Name Varchar(10),
--- 	Road_Id varchar(20) Primary key,
+-- 	Path_Id varchar(20) Primary key,
 --  Foreign Key (Transpot_Network_Name) References transport_network(Transpot_Network_Name)
 -- );
 
 -- create table station (
--- 	Station_Name varchar(20),
--- 	Station_GPS varchar(20) Primary key
+-- 	Station_Name varchar(20) Primary key,
+-- 	x_location  Int unique,
+--    y_location Int unique
 -- );
 
 -- create table sequence_station (
@@ -97,15 +99,19 @@
 -- 	Second_Station varchar(20),
 -- 	Distance Int,
 -- 	Period_Of_Time Int,
--- 	Foreign key (First_Station) References station (Station_GPS),
--- 	Foreign key (Second_Station) References station (Station_GPS)
+--     check (Distance > 0),
+--     check (Period_Of_Time > 0),
+--     primary key(First_Station, Second_Station),
+-- 	Foreign key (First_Station) References station (Station_Name),
+-- 	Foreign key (Second_Station) References station (Station_Name)
 -- );
 
--- create table station_R_road (
--- 	Road_Id varchar(20),
--- 	Station_GPS varchar(20),
--- 	Foreign key (Road_Id) References road (Road_Id),
--- 	Foreign key (Station_GPS) References station (Station_GPS)
+-- create table station_R_path (
+-- 	Path_Id varchar(20),
+-- 	Station_Name varchar(20),
+--  primary key (Path_Id, station_Name),
+-- 	Foreign key (Path_Id) References path (Path_Id),
+-- 	Foreign key (Station_Name) References station (Station_Name)
 -- );
 
 
@@ -115,6 +121,9 @@
 -- 	Origin varchar(20),
 -- 	Destination varchar(20),
 -- 	Travel_Date Date,
+--  primary key (Citizen_Id , Car_Tag),
 -- 	Foreign key (Citizen_Id) References citizen (National_Code),
 -- 	Foreign key (Car_Tag) References car (Tag)	
 -- );
+
+

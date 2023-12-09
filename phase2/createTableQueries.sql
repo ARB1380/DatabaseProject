@@ -127,3 +127,23 @@
 -- );
 
 
+
+-- alter table travel_receipt 
+-- 	add column Citizen_Id Char(10),
+-- 	add column Car_Tag char(8),
+-- 	add column Travel_Date Date;
+
+-- alter table travel_receipt
+-- 	Add foreign key (Citizen_Id) References citizen(National_Code)
+-- 	on update cascade
+-- 	on delete cascade,
+-- 	add foreign key (Car_Tag) References car (Tag)
+-- 	on update cascade
+-- 	on delete cascade;
+
+-- alter table travel_receipt
+-- 	add constraint foreign_keys 
+-- 	Foreign key (Citizen_Id, Car_Tag, Travel_Date) references travel (Citizen_Id, Car_Tag, Travel_Date)
+-- 	on update cascade
+-- 	on delete cascade;
+

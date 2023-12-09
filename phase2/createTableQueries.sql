@@ -280,7 +280,7 @@ drop column type_of_service;
 	
 alter table city_service_receipt
 	add column type_service char(11),
-	add column national_Id char(10),
+	add column national_Id char(10);
 
 
 alter table city_service_receipt
@@ -289,16 +289,17 @@ alter table city_service_receipt
 	on delete cascade,
 	add foreign key (national_Id) References home_owner(national_Id)
 	on update cascade
-	on delete cascade;
+	on delete cascade ;
+	
 alter table city_service_receipt
-	add constraint foreign_keys 
+	add constraint foreign_keys_second
 	Foreign key (type_service,national_Id) references  services_usage(type_service,national_Id)
 	on update cascade
 	on delete cascade;	
 	
 alter table parking_receipt
 	add column city_Id char(10),
-	add column national_Id char(10),
+	add column national_Id char(10);
 	
 alter table parking_receipt
 	Add foreign key (city_Id) References parking(city_Id)
@@ -307,8 +308,4 @@ alter table parking_receipt
 	add foreign key (national_Id) References driver_citizen(national_Id)
 	on update cascade
 	on delete cascade;
-alter table parking_receipt
-	add constraint foreign_keys 
-	Foreign key (city_Id,national_Id) references  driver_citizen(city_Id,national_Id)
-	on update cascade
-	on delete cascade;	
+

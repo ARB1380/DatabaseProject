@@ -225,13 +225,54 @@
 -- );
 
 
-alter table Citizen_Account
-add constraint x foreign key (Citizen_Id) References Citizen(National_Code)
+-- alter table Citizen_Account
+-- add constraint x foreign key (Citizen_Id) References Citizen(National_Code)
+-- 	on update cascade
+-- 	on delete cascade;
+
+-- alter table payment_receipt
+-- add constraint y foreign key(citizen_national_code) References Citizen(National_Code)
+-- on update cascade
+-- on delete set null;
+
+
+alter table car
+add constraint car_name foreign key(Transpot_Network_Name) References transport_network(Transpot_Network_Name)
+on update cascade
+on delete set null;
+
+alter table car 
+	add constraint car_owner Foreign Key (Car_Owner) References Citizen(National_Code)
+	on update cascade
+	on delete set null;
+
+alter table path
+	add constraint path_transport Foreign Key (Transpot_Network_Name) References transport_network(Transpot_Network_Name)
 	on update cascade
 	on delete cascade;
 
-alter table payment_receipt
-add constraint y foreign key(citizen_national_code) References Citizen(National_Code)
-on update cascade
-on delete set null;
+alter table sequence_station
+	add constraint first_station Foreign key (First_Station) References station (Station_Name)
+	on update cascade
+	on delete cascade,
+	add constraint second_station Foreign key (Second_Station) References station (Station_Name)
+	on update cascade
+	on delete cascade;
+
+alter table station_R_path
+	add constraint path_Id Foreign key (Path_Id) References path (Path_Id)
+	on update cascade
+	on delete cascade,
+	add constraint station_name Foreign key (Station_Name) References station (Station_Name)
+	on update cascade
+	on delete cascade ;
+	
+alter table travel
+	add constraint cicizen_Id Foreign key (Citizen_Id) References citizen (National_Code)
+	on update cascade
+	on delete set null,
+	add constraint car_tag Foreign key (Car_Tag) References car (Tag)
+	on update cascade
+	on delete set null;
+	
 

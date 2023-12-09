@@ -149,4 +149,80 @@
 -- 	on delete cascade;
 
 
+create table home(
+	city_Id char(10),
+	address varchar(200),
+	x_location int,
+	y_location int,
+	national_Id char(10),
+	primary key (city_Id),
+	foreign key (national_Id) references home_owner(national_Id)
+	on delete cascade
+	on update cascade,
+	constraint location_h unique (x_location,y_location)
+
+);
+
+create table home_owner(
+	national_Id char(10) primary key,
+	foreign key (national_Id) references citizen(National_Code)
+	on delete cascade
+	on update cascade
+);
+
+create table driver_citizen(
+	national_Id char(10) primary key,
+	city_Id char(10),
+	foreign key (national_Id) references citizen(National_Code) 
+	on delete cascade
+	on update cascade,
+	foreign key (city_Id) references parking(city_Id)
+	on delete cascade
+	on update cascade
+);
+
+create table services(
+	type_service char(11),
+	primary key (type_service),
+	check (type_service in ('water','gas','electricity'))
+	
+);
+
+create table services_usage(
+	national_Id char(10),
+	type_service char(11)
+	foreign key (national_Id) references home_owner(National_Code) 
+	on delete cascade
+	on update cascade,
+	foreign key (type_service) references services(type_service)
+	on delete cascade
+	on update cascade,
+	primary key (national_Id,type_service)
+);
+
+create table requests(
+	national_Id char(10),
+	type_service char(11)
+	foreign key (national_Id) references home_owner(National_Code) 
+	on delete cascade
+	on update cascade,
+	foreign key (type_service) references services(type_service)
+	on delete cascade
+	on update cascade,
+	primary key (national_Id,type_service)
+);
+
+create table parking(
+	city_Id char(10),
+	parking_name varchar(100),
+	start_time time,
+	end_time time,
+	x_location int,
+	y_location int,
+	hourly_cost int,
+	check (start_time<end_time),
+	check (hourly_cost>0),
+	primary key (city_Id),
+	constraint location_p unique (x_location,y_location)
+);
  

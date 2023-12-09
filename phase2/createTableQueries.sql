@@ -190,7 +190,7 @@ create table services(
 
 create table services_usage(
 	national_Id char(10),
-	type_service char(11)
+	type_service char(11),
 	foreign key (national_Id) references home_owner(National_Code) 
 	on delete cascade
 	on update cascade,
@@ -202,8 +202,8 @@ create table services_usage(
 
 create table requests(
 	national_Id char(10),
-	type_service char(11)
-	foreign key (national_Id) references home_owner(National_Code) 
+	type_service char(11),
+	foreign key (national_Id) references home_owner(national_Id) 
 	on delete cascade
 	on update cascade,
 	foreign key (type_service) references services(type_service)
@@ -225,4 +225,3 @@ create table parking(
 	primary key (city_Id),
 	constraint location_p unique (x_location,y_location)
 );
- 

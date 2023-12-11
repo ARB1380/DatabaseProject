@@ -275,37 +275,63 @@
 -- 	on update cascade
 -- 	on delete set null;
 
-alter table city_service_receipt
-drop column type_of_service;
+-- alter table city_service_receipt
+-- drop column type_of_service;
 	
-alter table city_service_receipt
-	add column type_service char(11),
-	add column national_Id char(10);
+-- alter table city_service_receipt
+-- 	add column type_service char(11),
+-- 	add column national_Id char(10);
 
 
-alter table city_service_receipt
-	Add foreign key (type_service) References services(type_service)
-	on update cascade
-	on delete cascade,
-	add foreign key (national_Id) References home_owner(national_Id)
-	on update cascade
-	on delete cascade ;
+-- alter table city_service_receipt
+-- 	Add foreign key (type_service) References services(type_service)
+-- 	on update cascade
+-- 	on delete cascade,
+-- 	add foreign key (national_Id) References home_owner(national_Id)
+-- 	on update cascade
+-- 	on delete cascade ;
 	
-alter table city_service_receipt
-	add constraint foreign_keys_second
-	Foreign key (type_service,national_Id) references  services_usage(type_service,national_Id)
-	on update cascade
-	on delete cascade;	
+-- alter table city_service_receipt
+-- 	add constraint foreign_keys_second
+-- 	Foreign key (type_service,national_Id) references  services_usage(type_service,national_Id)
+-- 	on update cascade
+-- 	on delete cascade;	
 	
+-- alter table parking_receipt
+-- 	add column city_Id char(10),
+-- 	add column national_Id char(10);
+	
+-- alter table parking_receipt
+-- 	Add foreign key (city_Id) References parking(city_Id)
+-- 	on update cascade
+-- 	on delete cascade,
+-- 	add foreign key (national_Id) References driver_citizen(national_Id)
+-- 	on update cascade
+-- 	on delete cascade;
+
+
 alter table parking_receipt
-	add column city_Id char(10),
-	add column national_Id char(10);
-	
+drop column national_id;
+
 alter table parking_receipt
-	Add foreign key (city_Id) References parking(city_Id)
-	on update cascade
-	on delete cascade,
-	add foreign key (national_Id) References driver_citizen(national_Id)
+add column national_id char(10);
+
+alter table parking_receipt
+	add foreign key (national_Id) References citizen(national_code)
 	on update cascade
 	on delete cascade;
+	
+
+create table driving(
+	national_id char(10),
+	car_tag char(8),
+	Primary Key(national_id, car_tag),
+	Foreign key (national_id) References citizen(national_code),
+	Foreign Key (car_tag) References car(tag)
+
+);
+
+
+
+
 

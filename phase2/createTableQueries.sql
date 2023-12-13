@@ -369,6 +369,13 @@ create table station_sequence(
 );
 
 
+alter table station_sequence
+add column distance int;
+
+alter table station_sequence
+add column period_of_time int;
+
+
 
 
 

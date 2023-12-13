@@ -375,6 +375,10 @@ add column distance int;
 alter table station_sequence
 add column period_of_time int;
 
+alter table payment_receipt
+add column service_used varchar(20)
+check(service_used in ('travel','parking', 'city_service'))
+
 
 
 

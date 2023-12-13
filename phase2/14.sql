@@ -21,4 +21,4 @@ WITH RECURSIVE path_cte AS (
 
 select min(distance)
 from path_cte
-where second_station_id = current_setting('my.vars.origin_station_id')
+where second_station_id = current_setting('my.vars.destination_station_id')

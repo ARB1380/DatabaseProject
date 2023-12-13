@@ -380,6 +380,32 @@ add column service_used varchar(20)
 check(service_used in ('travel','parking', 'city_service'))
 
 
+drop table parking_receipt;
+
+create table parking_usage(
+	arrival_time timestamp,
+	national_code char(10),
+	parking_city_id char(10),
+	primary key(national_code, arrival_time),
+	foreign key(national_code) references citizen(national_code)
+	on delete cascade
+	on update cascade,
+	foreign key (parking_city_id) references parking(city_id)
+	on delete set null
+	on update cascade                 
+
+);
+
+create table parking_receipt(
+	arrival_time timestamp,
+	departure_time timestamp,
+	national_code char(10),
+	parking_receipt_id char(10) primary key,
+	foreign key (national_code, arrival_time) references parking_usage(national_code, arrival_time)
+	on delete cascade
+	on update cascade
+);
+
 
 
 

@@ -310,25 +310,62 @@
 -- 	on delete cascade;
 
 
-alter table parking_receipt
-drop column national_id;
+-- alter table parking_receipt
+-- drop column national_id;
 
-alter table parking_receipt
-add column national_id char(10);
+-- alter table parking_receipt
+-- add column national_id char(10);
 
-alter table parking_receipt
-	add foreign key (national_Id) References citizen(national_code)
-	on update cascade
-	on delete cascade;
+-- alter table parking_receipt
+-- 	add foreign key (national_Id) References citizen(national_code)
+-- 	on update cascade
+-- 	on delete cascade;
 	
 
-create table driving(
-	national_id char(10),
-	car_tag char(8),
-	Primary Key(national_id, car_tag),
-	Foreign key (national_id) References citizen(national_code),
-	Foreign Key (car_tag) References car(tag)
+-- create table driving(
+-- 	national_id char(10),
+-- 	car_tag char(8),
+-- 	Primary Key(national_id, car_tag),
+-- 	Foreign key (national_id) References citizen(national_code),
+-- 	Foreign Key (car_tag) References car(tag)
 
+-- );
+
+drop table station_r_path;
+drop table sequence_station;
+drop table station;
+
+create table station(
+	station_id char(10) Primary Key,
+	station_name varchar(20),
+	x_location integer,
+	y_location integer,
+	unique(x_location, y_location)
+);
+
+create table station_r_path(
+	path_id varchar(20),
+	station_id char(10),
+	primary key(path_id, station_id),
+	foreign key (path_id) references path(path_id)
+	on delete cascade
+	on update cascade,
+	foreign key (station_id) references station(station_id)
+	on delete cascade
+	on update cascade
+	
+);
+
+create table station_sequence(
+	first_station_id char(10) Primary Key,
+	second_station_id char(10) unique,
+	foreign key (first_station_id) references station(station_id)
+	on delete cascade
+	on update cascade,
+	foreign key (second_station_id) references station(station_id)
+	on delete cascade
+	on update cascade
+	
 );
 
 

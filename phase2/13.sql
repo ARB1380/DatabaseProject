@@ -14,3 +14,5 @@ WHERE national_code IN (
         AND p2.arrival_time > (SELECT current_setting('my.vars.start_time')::timestamp)
         AND p2.departure_time < (SELECT current_setting('my.vars.end_time')::timestamp)
 );
+
+-- select remove

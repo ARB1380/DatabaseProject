@@ -1,5 +1,3 @@
-SET SESSION my.vars.start_time = '2023-08-12';
-SET SESSION my.vars.end_time = '2023-12-19';
 SET SESSION my.vars.x = 12;
 SET SESSION my.vars.y = 4;
 

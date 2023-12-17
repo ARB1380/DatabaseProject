@@ -328,8 +328,8 @@
 -- 	Primary Key(national_id, car_tag),
 -- 	Foreign key (national_id) References citizen(national_code),
 -- 	Foreign Key (car_tag) References car(tag)
-
 -- );
+
 
 -- drop table station_r_path;
 -- drop table sequence_station;
@@ -411,4 +411,50 @@ alter table driving
 	add column driving_time timestamp,
 	add column covered_distance int
 	check (covered_distance > 0);
+
+-----------------------------------
+alter table citizen
+	alter column overseer_citizen_id set not NULL ;
+
+alter table driving
+	add constraint fn1 foreign key(national_id) References citizen(national_code)
+	on update cascade
+	on delete cascade;
+
+
+alter table driving
+	add constraint fc1 Foreign Key (car_tag) References car(tag)
+	on update cascade
+	on delete cascade;
+
+alter table driving
+	drop constraint driving_pkey ;
+
+alter table driving
+	add primary key (national_id, car_tag, driving_time);
+
+alter table travel
+alter column travel_date set data type timestamp;
+
+alter table travel
+alter column origin set data type char(10);
+
+alter table travel
+alter column destination set data type char(10);
+
+alter table travel
+	rename column origin to origin_id;
+	
+alter table travel
+	rename column destination to destination_id;
+
+alter table travel
+	add constraint origin_id foreign key(origin_id) references station(station_id)
+	on update cascade
+	on delete cascade,
+	add constraint destination_id foreign key(destination_id) references station(station_id)
+	on update cascade
+	on delete cascade;
+
+
 

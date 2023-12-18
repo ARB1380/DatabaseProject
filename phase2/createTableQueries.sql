@@ -478,6 +478,9 @@ foreign key(car_tag) references car(tag)
 	on update cascade
 );
 
+alter table driving 
+add column drive_date date;
+
 
 
 

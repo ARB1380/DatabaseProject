@@ -456,5 +456,29 @@ alter table travel
 	on update cascade
 	on delete cascade;
 
+create table driving_citizen(
+	national_code char(10) primary key,
+	foreign key(national_code) references citizen(national_code)
+	on delete cascade
+	on update cascade
+
+)
+
+create table driving(
+national_id char(10) primary key,
+car_tag char(10),
+covered_distance int,
+driving_time timestamp,
+check(covered_distance > 0),
+foreign key(national_id) references driving_citizen(national_code)
+	on delete cascade
+	on update cascade,
+foreign key(car_tag) references car(tag)
+	on delete cascade
+	on update cascade
+);
+
+
+
 
 

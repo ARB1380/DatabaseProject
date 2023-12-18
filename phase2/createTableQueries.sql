@@ -483,5 +483,9 @@ add column drive_date date;
 
 
 
+alter table services_usage
+add column usage_date date;
 
+alter table services_usage
+add column amount_of_usage int;
 

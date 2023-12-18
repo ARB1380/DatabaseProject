@@ -1,5 +1,5 @@
-SET SESSION my.vars.start_date = '2023-12-12';
-SET SESSION my.vars.end_date = '2023-12-16';
+SET SESSION my.vars.start_date = '2023-12-12 10:30:00';
+SET SESSION my.vars.end_date = '2023-12-16 10:30:00';
 SET SESSION my.vars.distance = 400;
 
 
@@ -22,8 +22,8 @@ select * from citizen
 where citizen.national_code in
 (
 	select citizen_id from travel join path_cte on travel.origin_id = path_cte.first_station_id
-	where travel.travel_date > current_setting('my.vars.start_date'):: date
-	      and travel.travel_date < current_setting('my.vars.end_date')::date
+	where travel.travel_date > current_setting('my.vars.start_date'):: timestamp
+	      and travel.travel_date < current_setting('my.vars.end_date')::timestamp
 	      and travel.destination_id = path_cte.second_station_id
 	group by citizen_id
 	having min(distance) < current_setting('my.vars.distance')::int

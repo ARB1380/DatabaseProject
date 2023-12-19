@@ -1,13 +1,13 @@
 CREATE OR REPLACE FUNCTION check_parking_payment()
 RETURNS TRIGGER AS $$
 BEGIN
-    -- بررسی می‌کنیم که هزینه پارکینگ از اعتبار راننده بیشتر است یا خیر
+    -- Checking if the parking fee exceeds the driver's credit
     IF NEW.payable_amount > (SELECT Credit FROM Citizen_Account WHERE Citizen_Id = NEW.Citizen_National_code) THEN
-        -- محاسبه باقی‌مانده هزینه پارکینگ
+        -- Calculating the remaining parking fee
         NEW.payable_amount := NEW.payable_amount - (SELECT Credit FROM Citizen_Account WHERE Citizen_Id = NEW.Citizen_National_code);
-        -- ایجاد رسید پرداخت ضمیمه برای مالک خودرو
+        -- Creating a supplementary payment receipt for the vehicle owner
         INSERT INTO payment_receipt (payable_amount, time_of_issue, Citizen_National_code) VALUES (NEW.payable_amount, current_timestamp, NEW.Citizen_National_code);
-        -- منفی شدن اعتبار مالک خودرو
+        -- Deducting the vehicle owner's credit
         UPDATE Citizen_Account SET Credit = Credit - NEW.payable_amount WHERE Citizen_Id = NEW.Citizen_National_code;
     END IF;
 

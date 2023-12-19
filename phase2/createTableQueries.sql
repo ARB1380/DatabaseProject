@@ -489,3 +489,11 @@ add column usage_date date;
 alter table services_usage
 add column amount_of_usage int;
 
+CREATE TABLE Citizen_Visit (
+    Visit_ID SERIAL PRIMARY KEY,
+    National_Code Char(10) REFERENCES Citizen(National_Code),
+    Station_id varchar(20) REFERENCES station(station_id),
+    Visit_Date timestamp,
+    CONSTRAINT unique_visit UNIQUE (National_Code, Station_id, Visit_Date)
+);
+

@@ -407,93 +407,95 @@
 -- );
 
 
-alter table driving
-	add column driving_time timestamp,
-	add column covered_distance int
-	check (covered_distance > 0);
-
------------------------------------
-alter table citizen
-	alter column overseer_citizen_id set not NULL ;
-
-alter table driving
-	add constraint fn1 foreign key(national_id) References citizen(national_code)
-	on update cascade
-	on delete cascade;
+-- alter table driving
+-- 	add column driving_time timestamp,
+-- 	add column covered_distance int
+-- 	check (covered_distance > 0);
 
 
-alter table driving
-	add constraint fc1 Foreign Key (car_tag) References car(tag)
-	on update cascade
-	on delete cascade;
+-- alter table citizen
+-- 	alter column overseer_citizen_id set not NULL ;
 
-alter table driving
-	drop constraint driving_pkey ;
+-- alter table driving
+-- 	add constraint fn1 foreign key(national_id) References citizen(national_code)
+-- 	on update cascade
+-- 	on delete cascade;
 
-alter table driving
-	add primary key (national_id, car_tag, driving_time);
 
-alter table travel
-alter column travel_date set data type timestamp;
+-- alter table driving
+-- 	add constraint fc1 Foreign Key (car_tag) References car(tag)
+-- 	on update cascade
+-- 	on delete cascade;
 
-alter table travel
-alter column origin set data type char(10);
+-- alter table driving
+-- 	drop constraint driving_pkey ;
 
-alter table travel
-alter column destination set data type char(10);
+-- alter table driving
+-- 	add primary key (national_id, car_tag, driving_time);
 
-alter table travel
-	rename column origin to origin_id;
+-- alter table travel
+-- alter column travel_date set data type timestamp;
+
+-- alter table travel
+-- alter column origin set data type char(10);
+
+-- alter table travel
+-- alter column destination set data type char(10);
+
+-- alter table travel
+-- 	rename column origin to origin_id;
 	
-alter table travel
-	rename column destination to destination_id;
+-- alter table travel
+-- 	rename column destination to destination_id;
 
-alter table travel
-	add constraint origin_id foreign key(origin_id) references station(station_id)
-	on update cascade
-	on delete cascade,
-	add constraint destination_id foreign key(destination_id) references station(station_id)
-	on update cascade
-	on delete cascade;
+-- alter table travel
+-- 	add constraint origin_id foreign key(origin_id) references station(station_id)
+-- 	on update cascade
+-- 	on delete cascade,
+-- 	add constraint destination_id foreign key(destination_id) references station(station_id)
+-- 	on update cascade
+-- 	on delete cascade;
 
-create table driving_citizen(
-	national_code char(10) primary key,
-	foreign key(national_code) references citizen(national_code)
-	on delete cascade
-	on update cascade
+-- create table driving_citizen(
+-- 	national_code char(10) primary key,
+-- 	foreign key(national_code) references citizen(national_code)
+-- 	on delete cascade
+-- 	on update cascade
 
-)
+-- );
 
-create table driving(
-national_id char(10) primary key,
-car_tag char(10),
-covered_distance int,
-driving_time timestamp,
-check(covered_distance > 0),
-foreign key(national_id) references driving_citizen(national_code)
-	on delete cascade
-	on update cascade,
-foreign key(car_tag) references car(tag)
-	on delete cascade
-	on update cascade
-);
+-- drop table driving;
 
-alter table driving 
-add column drive_date date;
+-- create table driving(
+-- national_id char(10) primary key,
+-- car_tag char(10),
+-- covered_distance int,
+-- driving_time timestamp,
+-- check(covered_distance > 0),
+-- foreign key(national_id) references driving_citizen(national_code)
+-- 	on delete cascade
+-- 	on update cascade,
+-- foreign key(car_tag) references car(tag)
+-- 	on delete cascade
+-- 	on update cascade
+-- );
+
+-- alter table driving 
+-- add column drive_date date;
 
 
 
-alter table services_usage
-add column usage_date date;
+-- alter table services_usage
+-- add column usage_date date;
 
-alter table services_usage
-add column amount_of_usage int;
+-- alter table services_usage
+-- add column amount_of_usage int;
 
-CREATE TABLE Citizen_Visit (
-    Visit_ID SERIAL PRIMARY KEY,
-    National_Code Char(10) REFERENCES Citizen(National_Code),
-    Station_id varchar(20) REFERENCES station(station_id),
-    Visit_Date timestamp,
-    CONSTRAINT unique_visit UNIQUE (National_Code, Station_id, Visit_Date)
-);
+-- CREATE TABLE Citizen_Visit (
+--     Visit_ID SERIAL PRIMARY KEY,
+--     National_Code Char(10) REFERENCES Citizen(National_Code),
+--     Station_id varchar(20) REFERENCES station(station_id),
+--     Visit_Date timestamp,
+--     CONSTRAINT unique_visit UNIQUE (National_Code, Station_id, Visit_Date)
+-- );
 

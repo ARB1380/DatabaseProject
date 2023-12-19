@@ -26,7 +26,7 @@ where citizen.national_code in
 	      and travel.travel_date < current_setting('my.vars.end_date')::timestamp
 	      and travel.destination_id = path_cte.second_station_id
 	group by citizen_id
-	having min(distance) < current_setting('my.vars.distance')::int
+	having sum(distance) < current_setting('my.vars.distance')::int
 	
 );
 

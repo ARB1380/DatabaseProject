@@ -2,7 +2,7 @@ CREATE OR REPLACE FUNCTION check_citizen_credit()
 RETURNS TRIGGER AS $$
 BEGIN
     IF EXISTS (SELECT 1 FROM Citizen_Account WHERE Citizen_Id = NEW.Citizen_Id AND Credit <= 0) THEN
-        RAISE EXCEPTION 'شهروند اعتبار کافی برای استفاده از حمل و نقل عمومی و پارکینگ ندارد';
+        RAISE EXCEPTION 'Citizen does not have enough credit to use public transportation and parking';
     END IF;
     RETURN NEW;
 END;

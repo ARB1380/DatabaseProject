@@ -1,10 +1,10 @@
-SET SESSION my.vars.parking_Id = 123456789;
+SET SESSION my.vars.parking_Id = '123456789';
 
-SELECT parking_id, COUNT(*) AS car_count
-FROM parking_receipt
-WHERE parking_id = current_setting('my.vars.parking_Id')::int
-GROUP BY parking_id
-HAVING COUNT(*) = (SELECT MAX(temp.count) 
-   FROM (SELECT COUNT(*) AS count FROM parking_receipt 
-   WHERE parking_id = 123456789 
-   GROUP BY parking_id) AS temp);
+SELECT   max_car_count, start_time, end_time
+FROM (
+    SELECT  MAX(COUNT(parking_id)) OVER() AS max_car_count, start_time, end_time
+    FROM parking_receipt
+    JOIN parking ON parking_receipt.city_Id = parking.city_Id
+    WHERE parking_id = current_setting('my.vars.parking_Id')::int
+    GROUP BY parking_id, start_time, end_time
+) subquery

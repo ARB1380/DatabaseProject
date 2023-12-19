@@ -9,5 +9,5 @@ select national_id, sum(covered_distance) as maximum_distance
 group by national_id
 having sum(covered_distance) in(select sum(p1.covered_distance) 
 								from driving as p1
-								group by national_code
+								group by national_id
 								ORDER BY sum(p1.covered_distance) DESC LIMIT 5);

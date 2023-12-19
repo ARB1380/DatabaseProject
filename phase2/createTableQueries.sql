@@ -499,3 +499,9 @@
 --     CONSTRAINT unique_visit UNIQUE (National_Code, Station_id, Visit_Date)
 -- );
 
+alter table driving_citizen
+add column city_id;
+
+alter table driving_citizen
+add constraint cs foreign key(city_id) references parking(city_id);
+

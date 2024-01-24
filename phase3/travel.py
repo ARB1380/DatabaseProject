@@ -9,7 +9,7 @@ class Travel(BaseModel):
     car_tag = ForeignKeyField(Car)
     origin_id = ForeignKeyField(Station)
     destination_id = ForeignKeyField(Station)
-    travel_date = DateField()
+    travel_date = DateTimeField()
 
     class Meta:
         primary_key = CompositeKey('traveller_national_code','car_tag', 'travel_date')

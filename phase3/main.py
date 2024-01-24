@@ -1,5 +1,6 @@
 from peewee import *
 import psycopg2
+from citizen import *
 
 
 
@@ -15,5 +16,5 @@ import psycopg2
 #connection to the database
 pg_db = PostgresqlDatabase('phase3',user = 'postgres',password = '12345678')
 pg_db.connect()
-print("success in connection")
+pg_db.create_tables([Citizen])
 pg_db.close()

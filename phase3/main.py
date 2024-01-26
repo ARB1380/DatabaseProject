@@ -12,7 +12,6 @@ from home import *
 from driving import *
 from services import *
 from cityServiceReceipt import *
-from travel import *
 from parkingReceipt import *
 from requests import *
 from stationRPath import *
@@ -43,7 +42,8 @@ pg_db.connect()
 # pg_db.create_tables([Requests])
 # pg_db.create_tables([StationRPath, PaymentReceipt])
 # pg_db.create_tables([CityServiceReceipt])
-# pg_db.create_tables([Travel, StationSequence, Car ])
+# pg_db.create_tables([StationSequence, Car ])
 # pg_db.create_tables([Driving])
 # pg_db.create_tables([ParkingReceipt])
+# pg_db.create_tables([TravelReceipt])
 pg_db.close()

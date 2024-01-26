@@ -11,4 +11,4 @@ class Parking(BaseModel):
     hourly_cost = IntegerField(constraints=[Check("hourly_cost > 0")])
 
     class Meta:
-        constraints = [Check("arrival_time < departure_time "),"unique (x_location,y_location)"]
+        constraints = [Check("arrival_time < departure_time "), SQL("unique (x_location,y_location)")]

@@ -8,4 +8,4 @@ class Station(BaseModel):
     y_location = IntegerField()
 
     class Meta:
-        constraints = ["unique('x_location,y_location')"]
+        constraints = [SQL("unique(x_location,y_location)")]

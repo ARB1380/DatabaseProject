@@ -10,4 +10,4 @@ class Home(BaseModel):
     home_owner_national_id = ForeignKeyField(HomeOwner, null=True)
     
     class Meta:
-        constraints = ["unique('x_location,y_location')"]
+        constraints = [SQL("unique(x_location,y_location)")]

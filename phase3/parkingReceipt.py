@@ -11,4 +11,4 @@ class ParkingReceipt(BaseModel):
     departure_time = DateTimeField()
 
     class Meta:
-        primary_key = CompositeKey('citizen_national_code', 'arrival_time')
+        constraints = [SQL("unique(citizen_national_code_id,arrival_time)")]

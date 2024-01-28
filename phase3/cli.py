@@ -13,6 +13,7 @@ from delete_citizen_command import *
 from delete_station_command import *
 from delete_parking_command import *
 from delete_car_command import *
+from update_citizen_commands import *
 
 
 class CLI:
@@ -98,6 +99,15 @@ class CLI:
         delete_car__parser = self.subparsers.add_parser('delete_car', help = 'delete a car')
         delete_car__parser.add_argument('--tag', type=str,help='tag')
         delete_car__parser.set_defaults(command=DeleteCarCommand())
+
+        update_citizen__parser = self.subparsers.add_parser('update_citizen', help = 'update a citizen')
+        update_citizen__parser.add_argument('--national_code', type=str,help='national code')
+        update_citizen__parser.add_argument('--first_name', type=str, help='first name')
+        update_citizen__parser.add_argument('--last_name', type=str, help='last name')
+        update_citizen__parser.add_argument('--birth_date', type=str, help='birth date')
+        update_citizen__parser.add_argument('--gender', type=str, help='gender')
+        update_citizen__parser.add_argument('--overseer', type=str, help='national code')
+        update_citizen__parser.set_defaults(command=UpdateCitizenCommands())
 
 
 

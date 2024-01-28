@@ -1,5 +1,6 @@
 import argparse
 from create_data_base_command import *
+from create_tables_command import *
 
 
 class CLI:
@@ -12,6 +13,12 @@ class CLI:
         create_db_parser.add_argument('--username', type=str, help='Database username')
         create_db_parser.add_argument('--password', type=int, help='Database password')
         create_db_parser.set_defaults(command=CreateDatabaseCommand())
+
+        create_tables_parser = self.subparsers.add_parser('create_tables', help= 'Create required tables')
+        create_tables_parser.add_argument('--database', type = str, help='Database name')
+        create_tables_parser.add_argument('--username', type=str, help='Database username')
+        create_tables_parser.add_argument('--password', type=int, help='Database password')
+        create_tables_parser.set_defaults(command=CreateTablesCommand())
 
 
     def run(self):

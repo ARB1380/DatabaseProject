@@ -1,7 +1,6 @@
 from baseModel import *
 from citizen import *
 from car import *
-from travel import *
 from station import *
 
 

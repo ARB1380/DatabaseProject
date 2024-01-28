@@ -3,6 +3,7 @@ from create_data_base_command import *
 from create_tables_command import *
 from insert_citizen_command import *
 from insert_car_command import *
+from insert_station_command import *
 
 
 class CLI:
@@ -31,7 +32,7 @@ class CLI:
         insert_citizen_parser.add_argument('--overseer', type=str, help='national code')
         insert_citizen_parser.set_defaults(command=InsertCitizenCommand())
 
-        insert_car_parser = self.subparsers.add_parser('insert_car', help = 'Insert a citizen')
+        insert_car_parser = self.subparsers.add_parser('insert_car', help = 'Insert a car')
         insert_car_parser.add_argument('--tag', type=str,help='tag')
         insert_car_parser.add_argument('--color', type=str, help='color')
         insert_car_parser.add_argument('--chassis', type=str, help='chassis')
@@ -39,6 +40,13 @@ class CLI:
         insert_car_parser.add_argument('--transport_name', type=str, help='transport name')
         insert_car_parser.add_argument('--owner', type=str, help='owner')
         insert_car_parser.set_defaults(command=InsertCarCommand())
+
+        insert_station_parser = self.subparsers.add_parser('insert_station', help = 'Insert a station')
+        insert_station_parser.add_argument('--station_id', type=str,help='station id')
+        insert_station_parser.add_argument('--station_name', type=str, help='station name')
+        insert_station_parser.add_argument('--x_location', type=str, help='x location')
+        insert_station_parser.add_argument('--y_location', type=str, help='y location')
+        insert_station_parser.set_defaults(command=InsertStationCommand())
 
 
     def run(self):

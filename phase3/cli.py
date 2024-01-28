@@ -4,6 +4,7 @@ from create_tables_command import *
 from insert_citizen_command import *
 from insert_car_command import *
 from insert_station_command import *
+from insert_parking_command import *
 
 
 class CLI:
@@ -47,6 +48,16 @@ class CLI:
         insert_station_parser.add_argument('--x_location', type=str, help='x location')
         insert_station_parser.add_argument('--y_location', type=str, help='y location')
         insert_station_parser.set_defaults(command=InsertStationCommand())
+
+        insert_parking_parser = self.subparsers.add_parser('insert_parking', help = 'Insert a parking')
+        insert_parking_parser.add_argument('--city_id', type=str,help='city id')
+        insert_parking_parser.add_argument('--parking_name', type=str, help='parking name')
+        insert_parking_parser.add_argument('--arrival_time', type=str, help='arrival time')
+        insert_parking_parser.add_argument('--departure_time', type=str, help='departure time')
+        insert_parking_parser.add_argument('--x_location', type=str, help='x location')
+        insert_parking_parser.add_argument('--y_location', type=str, help='y location')
+        insert_parking_parser.add_argument('--cost', type=str, help='cost')
+        insert_parking_parser.set_defaults(command=InsertParkingCommand())
 
 
     def run(self):

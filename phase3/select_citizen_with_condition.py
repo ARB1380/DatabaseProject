@@ -8,3 +8,6 @@ class SelectCitizenWithConditionCommand:
                                                       payment.time_of_issue >= args.time_of_issue,
                                                      payment.end_time_of_issue <= args.end_time_of_issue) :
             print(payment.citizen_national_code)
+
+
+    

@@ -2,6 +2,7 @@ import argparse
 from create_data_base_command import *
 from create_tables_command import *
 from insert_citizen_command import *
+from insert_car_command import *
 
 
 class CLI:
@@ -29,6 +30,15 @@ class CLI:
         insert_citizen_parser.add_argument('--gender', type=str, help='gender')
         insert_citizen_parser.add_argument('--overseer', type=str, help='national code')
         insert_citizen_parser.set_defaults(command=InsertCitizenCommand())
+
+        insert_car_parser = self.subparsers.add_parser('insert_car', help = 'Insert a citizen')
+        insert_car_parser.add_argument('--tag', type=str,help='tag')
+        insert_car_parser.add_argument('--color', type=str, help='color')
+        insert_car_parser.add_argument('--chassis', type=str, help='chassis')
+        insert_car_parser.add_argument('--brand', type=str, help='brand')
+        insert_car_parser.add_argument('--transport_name', type=str, help='transport name')
+        insert_car_parser.add_argument('--owner', type=str, help='owner')
+        insert_car_parser.set_defaults(command=InsertCarCommand())
 
 
     def run(self):

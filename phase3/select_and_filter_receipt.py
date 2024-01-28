@@ -1,6 +1,6 @@
 from paymentReceipt import *
 
-class SelectCarCommand:
+class SelectAndFilterReceiptCommand:
 
     def execute(self, args):
         receipt_type = args.service_used

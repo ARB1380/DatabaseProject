@@ -16,6 +16,7 @@ from delete_car_command import *
 from update_citizen_commands import *
 from insert_cease_in_parking import *
 from select_and_filter_receipt import *
+from select_citizen_with_condition import *
 
 
 class CLI:
@@ -129,6 +130,16 @@ class CLI:
         select_and_filter_receipt__parser.add_argument('--time_of_issue', type=str, help= 'time of issue')
         select_and_filter_receipt__parser.add_argument('--end_time_of_issue', type=str, help='end time of issue')
         select_and_filter_receipt__parser.set_defaults(command=SelectAndFilterReceiptCommand())
+
+        select_citizen_with_condition__parser = self.subparsers.add_parser('select_citizen_with_condition', help = 'select citizen with condition')
+        select_citizen_with_condition__parser.add_argument('--a', type=str, help= 'first amount')
+        select_citizen_with_condition__parser.add_argument('--b', type=str, help = 'second amount')
+        select_citizen_with_condition__parser.add_argument('--time_of_issue', type=str, help='time of issue')
+        select_citizen_with_condition__parser.add_argument('--end_time_of_issue', type=str, help= 'end time of issue')
+        select_citizen_with_condition__parser.set_defaults(command = SelectCitizenWithConditionCommand())
+
+
+
         
 
 

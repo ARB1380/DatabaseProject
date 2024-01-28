@@ -5,6 +5,10 @@ from insert_citizen_command import *
 from insert_car_command import *
 from insert_station_command import *
 from insert_parking_command import *
+from select_citizen_command import *
+from select_station_command import *
+from select_parking_command import *
+from select_car_command import *
 
 
 class CLI:
@@ -58,6 +62,24 @@ class CLI:
         insert_parking_parser.add_argument('--y_location', type=str, help='y location')
         insert_parking_parser.add_argument('--cost', type=str, help='cost')
         insert_parking_parser.set_defaults(command=InsertParkingCommand())
+
+        select_citizen__parser = self.subparsers.add_parser('select_citizen', help = 'Select a citizen')
+        select_citizen__parser.add_argument('--national_code', type=str,help='national code')
+        select_citizen__parser.set_defaults(command=SelectCitizenCommand())
+
+        select_station__parser = self.subparsers.add_parser('select_station', help = 'Select a station')
+        select_station__parser.add_argument('--station_id', type=str,help='station id')
+        select_station__parser.set_defaults(command=SelectStationCommand())
+
+        select_parking__parser = self.subparsers.add_parser('select_parking', help = 'Select a parking')
+        select_parking__parser.add_argument('--city_id', type=str,help='city id')
+        select_parking__parser.set_defaults(command=SelectParkingCommand())
+
+        select_car__parser = self.subparsers.add_parser('select_car', help = 'Select a car')
+        select_car__parser.add_argument('--tag', type=str,help='car tag')
+        select_car__parser.set_defaults(command=SelectCarCommand())
+
+
 
 
     def run(self):

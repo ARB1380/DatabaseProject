@@ -6,9 +6,8 @@ from peewee import *
 class InsertCeaseInParkingCommands:
 
     def execute(self, args):
-        query = Parking.select(fn.TIMEDIFF(args.departure_time, args.arrival_time)) 
-        differentTime = query.scalar()
-        print(differentTime)
+        query = args.departure_time - args.arrival_time
+        differentTime = query
         cost = differentTime * args.hourly_cost
         new_credit = CitizenAccount.credit - cost
         

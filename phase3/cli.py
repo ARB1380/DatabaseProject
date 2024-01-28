@@ -14,6 +14,8 @@ from delete_station_command import *
 from delete_parking_command import *
 from delete_car_command import *
 from update_citizen_commands import *
+from insert_cease_in_parking import *
+from select_and_filter_receipt import *
 
 
 class CLI:
@@ -108,6 +110,26 @@ class CLI:
         update_citizen__parser.add_argument('--gender', type=str, help='gender')
         update_citizen__parser.add_argument('--overseer', type=str, help='national code')
         update_citizen__parser.set_defaults(command=UpdateCitizenCommands())
+
+        insert_cease_in_parking__parser = self.subparsers.add_parser('insert_cease_in_parking', help='insert cease in parking')
+        insert_cease_in_parking__parser.add_argument('--city_id', type=str, help='city id')
+        insert_cease_in_parking__parser.add_argument('--parking_name', type=str, help='parking name')
+        insert_cease_in_parking__parser.add_argument('--arrival_time', type=str, help = 'arrival time')
+        insert_cease_in_parking__parser.add_argument('--departure_time', type=str, help = 'departure time')
+        insert_cease_in_parking__parser.add_argument('--x_location', type=str, help= 'x location')
+        insert_cease_in_parking__parser.add_argument('--y_location', type=str, help = 'y location')
+        insert_cease_in_parking__parser.add_argument('--hourly_cost', type=str , help= 'hourly cost')
+        insert_cease_in_parking__parser.add_argument('--parking_receipt_id', type=str, help = 'parking receipt id')
+        insert_cease_in_parking__parser.add_argument('--citizen_national_code', type=str, help = 'national code')
+        insert_cease_in_parking__parser.set_defaults(command=InsertCeaseInParkingCommands())
+
+        select_and_filter_receipt__parser = self.subparsers.add_parser('filter_receipt', help = 'filter receipt')
+        select_and_filter_receipt__parser.add_argument('--service_used', type=str, help= 'service used')
+        select_and_filter_receipt__parser.add_argument('--citizen_national_code', type=str, help='citizen national code')
+        select_and_filter_receipt__parser.add_argument('--time_of_issue', type=str, help= 'time of issue')
+        select_and_filter_receipt__parser.add_argument('--end_time_of_issue', type=str, help='end time of issue')
+        select_and_filter_receipt__parser.set_defaults(command=SelectAndFilterReceiptCommand())
+        
 
 
 

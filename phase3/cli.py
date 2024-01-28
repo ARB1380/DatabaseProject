@@ -14,6 +14,9 @@ from delete_station_command import *
 from delete_parking_command import *
 from delete_car_command import *
 from update_citizen_commands import *
+from update_station_commands import *
+from update_parking_commands import *
+from update_car_commands import *
 
 
 class CLI:
@@ -109,6 +112,33 @@ class CLI:
         update_citizen__parser.add_argument('--overseer', type=str, help='national code')
         update_citizen__parser.set_defaults(command=UpdateCitizenCommands())
 
+        update_station_parser = self.subparsers.add_parser('update_station', help = 'Update a station')
+        update_station_parser.add_argument('--station_id', type=str,help='station id')
+        update_station_parser.add_argument('--station_name', type=str, help='station name')
+        update_station_parser.add_argument('--x_location', type=str, help='x location')
+        update_station_parser.add_argument('--y_location', type=str, help='y location')
+        update_station_parser.set_defaults(command=UpdateStationCommands())
+
+        update_parking_parser = self.subparsers.add_parser('update_parking', help = 'Insert a parking')
+        update_parking_parser.add_argument('--city_id', type=str,help='city id')
+        update_parking_parser.add_argument('--parking_name', type=str, help='parking name')
+        update_parking_parser.add_argument('--arrival_time', type=str, help='arrival time')
+        update_parking_parser.add_argument('--departure_time', type=str, help='departure time')
+        update_parking_parser.add_argument('--x_location', type=str, help='x location')
+        update_parking_parser.add_argument('--y_location', type=str, help='y location')
+        update_parking_parser.add_argument('--cost', type=str, help='cost')
+        update_parking_parser.set_defaults(command=UpdateParkingCommands())
+
+        update_car_parser = self.subparsers.add_parser('update_car', help = 'Update a car')
+        update_car_parser.add_argument('--tag', type=str,help='tag')
+        update_car_parser.add_argument('--color', type=str, help='color')
+        update_car_parser.add_argument('--chassis', type=str, help='chassis')
+        update_car_parser.add_argument('--brand', type=str, help='brand')
+        update_car_parser.add_argument('--owner', type=str, help='owner')
+        update_car_parser.set_defaults(command=UpdateCarCommands())
+
+
+
 
 
 
@@ -123,10 +153,3 @@ class CLI:
 cli = CLI()
 cli.run()
 
-
-
-
-# pg_db = PostgresqlDatabase('phase3',user = 'postgres',password = '12345678')
-# pg_db.connect()
-# print("connected to the database.")
-# pg_db.close()

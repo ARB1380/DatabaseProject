@@ -7,7 +7,7 @@ class Citizen(BaseModel):
     birth_date = DateField()
     gender = FixedCharField(max_length=1,constraints=[Check("gender in ('F','M')")])
     national_code = FixedCharField(max_length=10, primary_key=True)
-    overseer_citizen_id = ForeignKeyField('self',null=False)
+    overseer_citizen_id = ForeignKeyField('self',null=True)
 
 
 

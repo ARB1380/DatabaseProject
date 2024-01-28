@@ -9,6 +9,10 @@ from select_citizen_command import *
 from select_station_command import *
 from select_parking_command import *
 from select_car_command import *
+from delete_citizen_command import *
+from delete_station_command import *
+from delete_parking_command import *
+from delete_car_command import *
 
 
 class CLI:
@@ -78,6 +82,22 @@ class CLI:
         select_car__parser = self.subparsers.add_parser('select_car', help = 'Select a car')
         select_car__parser.add_argument('--tag', type=str,help='car tag')
         select_car__parser.set_defaults(command=SelectCarCommand())
+
+        delete_citizen__parser = self.subparsers.add_parser('delete_citizen', help = 'delete a citizen')
+        delete_citizen__parser.add_argument('--national_code', type=str,help='national code')
+        delete_citizen__parser.set_defaults(command=DeleteCitizenCommand())
+
+        delete_station__parser = self.subparsers.add_parser('delete_station', help = 'delete a station')
+        delete_station__parser.add_argument('--station_id', type=str,help='station id')
+        delete_station__parser.set_defaults(command=DeleteStationCommand())
+
+        delete_parking__parser = self.subparsers.add_parser('delete_parking', help = 'delete a parking')
+        delete_parking__parser.add_argument('--city_id', type=str,help='city id')
+        delete_parking__parser.set_defaults(command=DeleteParkingCommand())
+
+        delete_car__parser = self.subparsers.add_parser('delete_car', help = 'delete a car')
+        delete_car__parser.add_argument('--tag', type=str,help='tag')
+        delete_car__parser.set_defaults(command=DeleteCarCommand())
 
 
 

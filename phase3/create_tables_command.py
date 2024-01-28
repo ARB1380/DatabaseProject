@@ -25,11 +25,9 @@ from driving import *
 from baseModel import *
 
 class CreateTablesCommand:
-    db = None
 
     def execute(self, args):
         pg_db = PostgresqlDatabase(args.database, user=args.username, password=args.password)
-        self.db = pg_db
         pg_db.connect()
         pg_db.create_tables([Citizen, CitizenAccount, Parking, HomeOwner, DrivingCitizen, TransportNetwork, Station, Path, Home, Services, Requests, StationRPath, PaymentReceipt, CityServiceReceipt, StationSequence, Car, Driving, ParkingReceipt, TravelReceipt])
         pg_db.close()

@@ -1,6 +1,7 @@
 import argparse
 from create_data_base_command import *
 from create_tables_command import *
+from insert_citizen_command import *
 
 
 class CLI:
@@ -19,6 +20,15 @@ class CLI:
         create_tables_parser.add_argument('--username', type=str, help='Database username')
         create_tables_parser.add_argument('--password', type=int, help='Database password')
         create_tables_parser.set_defaults(command=CreateTablesCommand())
+
+        insert_citizen_parser = self.subparsers.add_parser('insert_citizen', help = 'Insert a citizen')
+        insert_citizen_parser.add_argument('--national_code', type=str,help='national code')
+        insert_citizen_parser.add_argument('--first_name', type=str, help='first name')
+        insert_citizen_parser.add_argument('--last_name', type=str, help='last name')
+        insert_citizen_parser.add_argument('--birth_date', type=str, help='birth date')
+        insert_citizen_parser.add_argument('--gender', type=str, help='gender')
+        insert_citizen_parser.add_argument('--overseer', type=str, help='national code')
+        insert_citizen_parser.set_defaults(command=InsertCitizenCommand())
 
 
     def run(self):

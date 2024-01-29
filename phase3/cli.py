@@ -141,13 +141,10 @@ class CLI:
         update_car_parser.set_defaults(command=UpdateCarCommands())
 
         insert_cease_in_parking__parser = self.subparsers.add_parser('insert_cease_in_parking', help='insert cease in parking')
-        insert_cease_in_parking__parser.add_argument('--city_id', type=str, help='city id')
-        insert_cease_in_parking__parser.add_argument('--parking_name', type=str, help='parking name')
+
         insert_cease_in_parking__parser.add_argument('--arrival_time', type=str, help = 'arrival time')
         insert_cease_in_parking__parser.add_argument('--departure_time', type=str, help = 'departure time')
-        insert_cease_in_parking__parser.add_argument('--x_location', type=str, help= 'x location')
-        insert_cease_in_parking__parser.add_argument('--y_location', type=str, help = 'y location')
-        insert_cease_in_parking__parser.add_argument('--hourly_cost', type=str , help= 'hourly cost')
+        insert_cease_in_parking__parser.add_argument('--parking_city_id', type=str , help= 'parking city id')
         insert_cease_in_parking__parser.add_argument('--parking_receipt_id', type=str, help = 'parking receipt id')
         insert_cease_in_parking__parser.add_argument('--citizen_national_code', type=str, help = 'national code')
         insert_cease_in_parking__parser.set_defaults(command=InsertCeaseInParkingCommands())

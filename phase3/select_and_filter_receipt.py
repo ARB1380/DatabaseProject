@@ -18,7 +18,7 @@ class SelectAndFilterReceiptCommand:
                 print(f"receipt end_time_of_issue : {type.end_time_of_issue}")
         
         if citizen != 'null' :
-            for code in PaymentReceipt.select().where(PaymentReceipt.service_used == citizen):
+            for code in PaymentReceipt.select().where(PaymentReceipt.citizen_national_code == citizen):
                 print(f"receipt code : {code.receipt_code}")
                 print(f"receipt payable_amount : {code.payable_amount}")
                 print(f"receipt time_of_issue : {code.time_of_issue}")
@@ -27,7 +27,7 @@ class SelectAndFilterReceiptCommand:
                 print(f"receipt end_time_of_issue : {code.end_time_of_issue}")
         
         if start_time != 'null' :
-            for start in PaymentReceipt.select().where(PaymentReceipt.service_used == start_time):
+            for start in PaymentReceipt.select().where(PaymentReceipt.time_of_issue == start_time):
                 print(f"receipt code : {start.receipt_code}")
                 print(f"receipt payable_amount : {start.payable_amount}")
                 print(f"receipt time_of_issue : {start.time_of_issue}")
@@ -36,7 +36,7 @@ class SelectAndFilterReceiptCommand:
                 print(f"receipt end_time_of_issue : {start.end_time_of_issue}")
 
         if end_time != 'null' :
-            for end in PaymentReceipt.select().where(end.service_used == end_time):
+            for end in PaymentReceipt.select().where(PaymentReceipt.end_time_of_issue == end_time):
                 print(f"receipt code : {end.receipt_code}")
                 print(f"receipt payable_amount : {end.payable_amount}")
                 print(f"receipt time_of_issue : {end.time_of_issue}")

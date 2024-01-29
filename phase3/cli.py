@@ -21,6 +21,7 @@ from insert_cease_in_parking import *
 from select_and_filter_receipt import *
 from select_citizen_with_condition import *
 from CitizenSearch import *
+from chargeAccount import *
 
 
 class CLI:
@@ -168,6 +169,13 @@ class CLI:
         search_citizen__parser.add_argument('--first_name', type=str, help= 'first name')
         search_citizen__parser.add_argument('--last_name', type=str, help = 'last name')
         search_citizen__parser.set_defaults(command = CitizenSearch())
+
+        charge_citizen__parser = self.subparsers.add_parser('charge_citizen', help = 'charge citizen')
+        charge_citizen__parser.add_argument('--national_code', type=str, help= 'national code')
+        charge_citizen__parser.add_argument('--amount', type=str, help = 'amount')
+        charge_citizen__parser.set_defaults(command = ChargeAccount())
+
+
 
 
 

@@ -20,6 +20,7 @@ from update_car_commands import *
 from insert_cease_in_parking import *
 from select_and_filter_receipt import *
 from select_citizen_with_condition import *
+from CitizenSearch import *
 
 
 class CLI:
@@ -162,6 +163,11 @@ class CLI:
         select_citizen_with_condition__parser.add_argument('--time_of_issue', type=str, help='time of issue')
         select_citizen_with_condition__parser.add_argument('--end_time_of_issue', type=str, help= 'end time of issue')
         select_citizen_with_condition__parser.set_defaults(command = SelectCitizenWithConditionCommand())
+
+        search_citizen__parser = self.subparsers.add_parser('search_citizen', help = 'search citizen')
+        search_citizen__parser.add_argument('--first_name', type=str, help= 'first name')
+        search_citizen__parser.add_argument('--last_name', type=str, help = 'last name')
+        search_citizen__parser.set_defaults(command = CitizenSearch())
 
 
 
